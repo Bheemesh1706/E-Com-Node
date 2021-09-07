@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv/config");
 const app = express();
-const jwt = require("jsonwebtoken");
 const router = express.Router();
 const userRouter = require("./src/routes/user")
 
@@ -12,11 +11,11 @@ mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => {
 
 app.use(express.json());
 
-app.listen(3001, () => {
-  console.log("Server Started");
-});
+router.use("/auth",userRouter)
 
-router.use("/register",userRouter)
 app.use("/api", router);
 
 
+app.listen(3001, () => {
+  console.log("Server Started");
+});
