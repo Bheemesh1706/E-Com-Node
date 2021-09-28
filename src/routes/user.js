@@ -11,7 +11,7 @@ router.post("/register",async (req,res)=>
 
      const user = await User.findOne({username})
 
-     if(user) return res.json({ error: "User exist" });
+     if(user) return res.json({ error_message: "User exist" });
     
      const salt = await bcrypt.genSalt(10);
      const hashPassword = await bcrypt.hash(password, salt);
@@ -29,7 +29,7 @@ router.post("/register",async (req,res)=>
     catch(e)
     { 
       console.log(e.message)
-      return res.json({ error: e.message });
+      return res.json({ error_message: e.message });
     }
 })
 
@@ -40,10 +40,10 @@ router.post("/login", async (req, res) => {
     const { username,password} = req.body;
     const user = await User.findOne({ username });
 
-    if (!user) return res.json({ error: "User not exist" });
+    if (!user) return res.json({ error_message: "User not exist" });
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) return res.send({ error: `Invalid Password` });
+    if (!isPasswordValid) return res.send({ error_message: `Invalid Password` });
 
      const token = jwt.sign(
        { id: user.id, type: "user" },
@@ -55,7 +55,7 @@ router.post("/login", async (req, res) => {
     catch(e)
   {
     console.log(e.message);
-    return res.json({ error: e.message });
+    return res.json({ error_message: e.message });
   }
 });
 
