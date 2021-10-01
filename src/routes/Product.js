@@ -28,10 +28,42 @@ router.post("/order", async(req,res)=>{
 
 router.get("/get-order", async(req,res)=>{
   const token = req.query.token;
+  const pageno = req.query.page;
+  var current = (pageno-1)*2;
+  console.log("get-orders");
+  console.log(req.query);
+
   const User = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
   console.log(User.id);
-  const OrderList = await Order.find({User: User.id})
-  console.log(OrderList);
-  res.send({}).status(200);
+  console.log(pageno);
+  console.log(current);
+  const OrderData = await Order.find({User: User.id}).skip(0).limit(2);
+  console.log(OrderData);
+  if(User)
+  {res.send(OrderData).status(200);}
+  else{
+    res.send({"error_message":"Unauthorised"}).status(401);
+  }
+
 })
+
+router.get("/get-order-details", async (req, res) => {
+  const token = req.query.token;
+  const Id = req.query.Id;
+  console.log("get-orders-details");
+  console.log(req.query);
+
+  const User = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+  console.log(User.id);
+  console.log(pageno);
+  console.log(current);
+  const OrderData = await OrderItems.find({ OrderID: Id });
+  
+  console.log(OrderData);
+  if (User) {
+    res.send(OrderData).status(200);
+  } else {
+    res.send({ error_message: "Unauthorised" }).status(401);
+  }
+});
 module.exports = router;

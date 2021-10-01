@@ -5,10 +5,20 @@ const schemaOrderItems = new mongoose.Schema({
     type: String,
     required: true,
   },
-  Items: {
-    type: Object,
+  Name: {
+    type: String,
     required: true,
   },
+  Price: {
+    type: String,
+    required: true,
+  },
+  Unit: {
+    type: Number,
+    required: true,
+  },
+  Count: { type: Number, required: true },
+  
 });
 
 module.exports = mongoose.model("OrderItems", schemaOrderItems);
