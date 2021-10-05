@@ -17,11 +17,11 @@ router.post("/order", async(req,res)=>{
         console.log(Id);
         console.log(Total);
 
-        const newOrder = Order({Total,Address:address.Address,User: Id});
-        const saveOrder = await newOrder.save();
+        // const newOrder = Order({Total,Address:address.Address,User: Id});
+        // const saveOrder = await newOrder.save();
 
-        const newOrderItem = OrderItems({OrderID:saveOrder.id,Items:cart});
-        const saveOrderItem = await newOrderItem.save();
+        // const newOrderItem = OrderItems({OrderID:saveOrder.id});
+        // const saveOrderItem = await newOrderItem.save();
 
         res.send({"sucess_message":"Order Initiated!"}).status(200);
 })
