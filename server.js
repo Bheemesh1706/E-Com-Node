@@ -28,7 +28,16 @@ app.all("*", function (req, res, next) {
 app.use(express.json());
 router.use("/auth", userRouter);
 router.use("/product", productRouter);
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: "PUT, GET, POST, DELETE, OPTIONS",
+    allowedHeaders:
+      "Content-Type,Authorization,Origin,Access-Control-Allow-Headers,Accept",
+    credentials: true,
+    preflightContinue: true,
+  })
+);
 app.use("/api", router);
 
 app.listen(3001, () => {
