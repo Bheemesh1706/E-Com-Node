@@ -20,7 +20,7 @@ mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => {
 app.use(express.json());
 router.use("/auth",userRouter)
 router.use("/product",productRouter)
-app.use(cors());
+app.use(cors({origin:"*"}));
 app.use("/api", router);
 
 
