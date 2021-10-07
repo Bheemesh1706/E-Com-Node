@@ -6,11 +6,13 @@ const router = express.Router();
 const cors = require("cors");
 const userRouter = require("./src/routes/user");
 const productRouter = require("./src/routes/Product");
+const Update = require("./src/Script/update");
 
 
 
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => {
   console.log("connect to DB!");
+  Update();
 });
 
 

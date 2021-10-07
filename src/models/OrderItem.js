@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const schemaOrderItems = new mongoose.Schema({
+const schemaOrderItem = new mongoose.Schema({
   OrderID: {
     type: String,
     required: true,
@@ -17,8 +17,12 @@ const schemaOrderItems = new mongoose.Schema({
     type: Number,
     required: true,
   },
+   Weight: {
+    type: String,
+    required: true,
+  },
   Count: { type: Number, required: true },
   
 });
 
-module.exports = mongoose.model("OrderItems", schemaOrderItems);
+module.exports = mongoose.model("OrderItem", schemaOrderItem);

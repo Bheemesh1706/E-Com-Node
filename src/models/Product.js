@@ -17,6 +17,10 @@ const schemaProduct = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  Availability: {
+    type: Boolean,
+    default: true,
+  }
 });
 
 module.exports = mongoose.model("Product", schemaProduct);
