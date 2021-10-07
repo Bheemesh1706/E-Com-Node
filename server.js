@@ -15,9 +15,7 @@ mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => {
 
 app.all("*", function (req, res, next) {
   res.header(
-    "Access-Control-Allow-Origin",
-    "https://distracted-swanson-8e7f48.netlify.app"
-  );
+    "Access-Control-Allow-Origin","*");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
   res.header(
