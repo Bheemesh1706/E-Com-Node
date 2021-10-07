@@ -29,7 +29,7 @@ app.all("*", function (req, res, next) {
 app.use(express.json());
 router.use("/auth",userRouter)
 router.use("/product",productRouter)
-app.use(cors({origin:"*"}));
+app.use(cors());
 app.use("/api", router);
 
 
