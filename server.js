@@ -8,15 +8,16 @@ const userRouter = require("./src/routes/user");
 const productRouter = require("./src/routes/Product");
 const Update = require("./src/Script/update");
 
-
-
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => {
   console.log("connect to DB!");
   Update();
 });
 
 app.all("*", function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://distracted-swanson-8e7f48.netlify.app"
+  );
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
   res.header(
@@ -27,11 +28,10 @@ app.all("*", function (req, res, next) {
 });
 
 app.use(express.json());
-router.use("/auth",userRouter)
-router.use("/product",productRouter)
+router.use("/auth", userRouter);
+router.use("/product", productRouter);
 app.use(cors());
 app.use("/api", router);
-
 
 app.listen(3001, () => {
   console.log("Server Started");
